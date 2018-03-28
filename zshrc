@@ -66,13 +66,15 @@ DISABLE_UPDATE_PROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git z colored-man-pages colorize thefuck zsh-autosuggestions)
+plugins=(git colored-man-pages colorize thefuck zsh-autosuggestions)
 
 # User configuration
 export EDITOR='code'
 export PATH=$PATH:/Users/paul/.rvm/gems/ruby-2.2.0/bin:/Users/paul/.rvm/gems/ruby-2.2.0@global/bin:/Users/paul/.rvm/rubies/ruby-2.2.0/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/share/npm/bin:/usr/local/mysql/bin:/Applications/MATLAB_R2013b.app/bin:/usr/local/opt/ruby/bin:/usr/local/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/Users/paul/.rvm/bin:/Users/paul/.cabal/bin
 export PATH=/Users/paul/anaconda3/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
+# Autojump configuration
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
