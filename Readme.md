@@ -2,7 +2,7 @@
 
 This repository contains the Dotfiles for my Macbook. It is inspired from the Blog post [https://coderwall.com/p/ynu8xq/keep-your-dotfiles-in-git](https://coderwall.com/p/ynu8xq/keep-your-dotfiles-in-git).
 
-# Setup
+## Setup
 
 I use
 
@@ -11,7 +11,7 @@ I use
 * [Source Code Pro Powerline Font-Awesome patched font](https://github.com/gabrielelana/awesome-terminal-fonts/raw/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf)
 * [Autojump](https://github.com/wting/autojump)
 
-# Usage
+## Usage
 
 Navigate to the Home folder and run the following commands.
 
@@ -23,4 +23,5 @@ git clone <REPO-NAME> ~/.dotfiles
 ln -s ~/.dotfiles/bashrc ~/.bashrc
 ln -s ~/.dotfiles/bash_profile ~/.bash_profile
 ln -s ~/.dotfiles/zshrc ~/.zshrc
+ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 ```
