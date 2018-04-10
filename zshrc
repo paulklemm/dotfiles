@@ -69,6 +69,9 @@ DISABLE_UPDATE_PROMPT=true
 plugins=(git colored-man-pages colorize thefuck zsh-autosuggestions)
 
 # User configuration
+# Gitignore.io function
+function gi() { curl https://www.gitignore.io/api/$@ ;}
+
 export EDITOR='code'
 export PATH=$PATH:/Users/paul/.rvm/gems/ruby-2.2.0/bin:/Users/paul/.rvm/gems/ruby-2.2.0@global/bin:/Users/paul/.rvm/rubies/ruby-2.2.0/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/share/npm/bin:/usr/local/mysql/bin:/Applications/MATLAB_R2013b.app/bin:/usr/local/opt/ruby/bin:/usr/local/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/Users/paul/.rvm/bin:/Users/paul/.cabal/bin
 export PATH=/Users/paul/anaconda3/bin:$PATH
