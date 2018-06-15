@@ -6,10 +6,11 @@ This repository contains the Dotfiles for my Macbook. It is inspired from the Bl
 
 I use
 
-* ZSH with the [Oh-My-ZSH](https://github.com/robbyrussell/oh-my-zsh) configuration
-* [Powerlevel9k](https://github.com/bhilburn/powerlevel9k) theme for ZSH with a custom configuration found in the `zshrc`
-* [Source Code Pro Powerline Font-Awesome patched font](https://github.com/gabrielelana/awesome-terminal-fonts/raw/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf)
-* [Autojump](https://github.com/wting/autojump)
+- ZSH with the [Oh-My-ZSH](https://github.com/robbyrussell/oh-my-zsh) configuration
+- [Powerlevel9k](https://github.com/bhilburn/powerlevel9k) theme for ZSH with a custom configuration found in the `zshrc`
+- [Source Code Pro Powerline Font-Awesome patched font](https://github.com/gabrielelana/awesome-terminal-fonts/raw/patching-strategy/patched/SourceCodePro%2BPowerline%2BAwesome%2BRegular.ttf)
+- [Autojump](https://github.com/wting/autojump)
+- [NORD tmux theme](https://github.com/arcticicestudio/nord-tmux)
 
 ## Usage
 
@@ -24,4 +25,7 @@ ln -s ~/.dotfiles/bashrc ~/.bashrc
 ln -s ~/.dotfiles/bash_profile ~/.bash_profile
 ln -s ~/.dotfiles/zshrc ~/.zshrc
 ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
+
+# Clone tmux theme
+cd ~/.dotfiles && git clone git@github.com:arcticicestudio/nord-tmux.git
 ```
