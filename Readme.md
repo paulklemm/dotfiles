@@ -28,4 +28,8 @@ ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 
 # Clone tmux theme
 cd ~/.dotfiles && git clone git@github.com:arcticicestudio/nord-tmux.git
+# Clone fzf - https://github.com/junegunn/fzf#using-git
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+# Only say "No" to "Update config files"
+~/.fzf/install
 ```
