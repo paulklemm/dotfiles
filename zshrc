@@ -109,7 +109,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 xx() {
-  #echo $1
   curl cheat.sh/$1
 }
 
