@@ -33,3 +33,7 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # Only say "No" to "Update config files"
 ~/.fzf/install
 ```
+
+## Fonts
+
+The Powerlevel9k settings are set up to work with nerdfont-complete fonts ([https://github.com/bhilburn/powerlevel9k/wiki/About-Fonts](https://github.com/bhilburn/powerlevel9k/wiki/About-Fonts)). For example, use [this one](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode/Regular) in the `complete` folder.
