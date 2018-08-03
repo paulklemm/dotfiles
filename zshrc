@@ -112,5 +112,14 @@ xx() {
   curl cheat.sh/$1
 }
 
+# open fzf window with dirs and cd into it - https://prakashdanish.github.io/2018/08/03/command-line-dir-switcher.html
+function quick_find () {
+    dir=$(find ~ -not -path '*/\.*' -type d -maxdepth 5 | fzf)
+    echo -ne "$dir"
+    cd $dir
+}
+zle -N quick_find_widget quick_find # define a widget for the func above
+bindkey "^p" quick_find_widget # remap ^p to the widget -> func
+
 # Enable fzf - https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
