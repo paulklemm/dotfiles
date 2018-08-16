@@ -32,6 +32,9 @@ cd ~/.dotfiles && git clone git@github.com:arcticicestudio/nord-tmux.git
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 # Only say "No" to "Update config files"
 ~/.fzf/install
+
+# Install zsh syntax highlighting plugin
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
 ```
 
 ## Fonts

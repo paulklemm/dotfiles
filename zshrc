@@ -66,7 +66,7 @@ DISABLE_UPDATE_PROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages colorize thefuck zsh-autosuggestions)
+plugins=(git colored-man-pages colorize thefuck zsh-autosuggestions zsh-syntax-highlighting)
 
 # User configuration
 # Gitignore.io function
