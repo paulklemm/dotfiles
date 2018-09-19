@@ -16,7 +16,8 @@ POWERLEVEL9K_MODE='nerdfont-complete'
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(context background_jobs time)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon status dir vcs)
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon status dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon status dir)
 POWERLEVEL9K_STATUS_VERBOSE=false
 POWERLEVEL9K_STATUS_ERROR_BACKGROUND="red"
 POWERLEVEL9K_STATUS_ERROR_FOREGROUND="black"
@@ -123,3 +124,6 @@ bindkey "^p" quick_find_widget # remap ^p to the widget -> func
 
 # Enable fzf - https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Disable duplicate entries in the history - https://github.com/junegunn/fzf/issues/600#issuecomment-360075347
+setopt HIST_IGNORE_ALL_DUPS
