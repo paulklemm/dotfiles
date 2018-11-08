@@ -122,6 +122,15 @@ function quick_find () {
 zle -N quick_find_widget quick_find # define a widget for the func above
 bindkey "^p" quick_find_widget # remap ^p to the widget -> func
 
+# Function for opening location with code and sublime merge
+function open_with_code_and_sublime_merge {
+    code $1
+    smerge $1
+}
+
+alias sc="open_with_code_and_sublime_merge"
+
+
 # Enable fzf - https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
