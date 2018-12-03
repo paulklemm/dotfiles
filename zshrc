@@ -130,6 +130,15 @@ function open_with_code_and_sublime_merge {
 
 alias sc="open_with_code_and_sublime_merge"
 
+# Attach remotely to a tmux session that is a combination of the folder name and the MD5 hash of the path
+# Adapted from https://medium.com/@joaomoreno/persistent-terminal-sessions-in-vs-code-8fc469ed6b41
+function rmux {
+    FOLDER_NAME=${PWD##*/} 
+    SESSION="${FOLDER_NAME}_`pwd | md5`"
+    # -A trick from here: https://unix.stackexchange.com/a/176885
+    ssh -t $@ pklemm@blade34 tmux new-session -A -s $SESSION
+}
+
 
 # Enable fzf - https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
