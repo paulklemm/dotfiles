@@ -136,7 +136,7 @@ function rmux {
     FOLDER_NAME=${PWD##*/} 
     SESSION="${FOLDER_NAME}_`pwd | md5`"
     # -A trick from here: https://unix.stackexchange.com/a/176885
-    ssh -t $@ pklemm@blade34 tmux new-session -A -s $SESSION
+    ssh -X -Y -t $@ pklemm@blade34 tmux new-session -A -s $SESSION
 }
 
 
