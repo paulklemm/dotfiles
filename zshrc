@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block, everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 export TERM="xterm-256color"
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/paul/.oh-my-zsh
@@ -11,16 +18,7 @@ zstyle ':completion:*:man:*'      menu yes select
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_MODE='nerdfont-complete'
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RPROMPT_ON_NEWLINE=true
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(context background_jobs time)
-# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon status dir vcs)
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon status dir)
-POWERLEVEL9K_STATUS_VERBOSE=false
-POWERLEVEL9K_STATUS_ERROR_BACKGROUND="red"
-POWERLEVEL9K_STATUS_ERROR_FOREGROUND="black"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -145,3 +143,6 @@ function rmux {
 
 # Disable duplicate entries in the history - https://github.com/junegunn/fzf/issues/600#issuecomment-360075347
 setopt HIST_IGNORE_ALL_DUPS
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
