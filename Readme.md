@@ -36,6 +36,9 @@ git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 
 # Install zsh syntax highlighting plugin
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/plugins/zsh-syntax-highlighting
+
+# Add the global gitignore file - https://stackoverflow.com/questions/7335420/global-git-ignore
+git config --global core.excludesfile '~/.dotfiles/global_gitignore'
 ```
 
 ## Fonts
