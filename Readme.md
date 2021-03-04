@@ -8,8 +8,7 @@ I use
 
 - ZSH with the [Oh-My-ZSH](https://github.com/robbyrussell/oh-my-zsh) configuration
 - Autocompletion Plugin for Oh My ZSH: [https://github.com/zsh-users/zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
-- [Powerlevel9k](https://github.com/bhilburn/powerlevel9k) theme for ZSH with a custom configuration found in the `zshrc`
-- [Autojump](https://github.com/wting/autojump)
+- [Powerlevel10k](https://github.com/romkatv/powerlevel10k) theme for ZSH with a custom configuration found in the `zshrc`
 - [NORD tmux theme](https://github.com/arcticicestudio/nord-tmux)
 
 ## Usage
@@ -43,4 +42,4 @@ git config --global core.excludesfile '~/.dotfiles/global_gitignore'
 
 ## Fonts
 
-The Powerlevel9k settings are set up to work with nerdfont-complete fonts ([https://github.com/bhilburn/powerlevel9k/wiki/About-Fonts](https://github.com/bhilburn/powerlevel9k/wiki/About-Fonts)). For example, use [this one](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode/Regular) in the `complete` folder.
+The Powerlevel10k settings are set up to work with nerdfont-complete fonts ([https://github.com/romkatv/powerlevel10k#fonts](https://github.com/romkatv/powerlevel10k#fonts)). For example, use [this one](https://github.com/ryanoasis/nerd-fonts/tree/master/patched-fonts/FiraCode/Regular) in the `complete` folder.
