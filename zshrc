@@ -1,4 +1,4 @@
-source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
+# source /usr/local/opt/powerlevel10k/powerlevel10k.zsh-theme
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block, everything else may go below.
@@ -19,7 +19,7 @@ zstyle ':completion:*:man:*'      menu yes select
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-# ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -66,7 +66,7 @@ DISABLE_UPDATE_PROMPT=true
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git colored-man-pages colorize thefuck zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git colored-man-pages colorize zsh-autosuggestions zsh-syntax-highlighting)
 
 # User configuration
 # Gitignore.io function
@@ -132,12 +132,15 @@ alias sc="open_with_code_and_sublime_merge"
 # Attach remotely to a tmux session that is a combination of the folder name and the MD5 hash of the path
 # Adapted from https://medium.com/@joaomoreno/persistent-terminal-sessions-in-vs-code-8fc469ed6b41
 function rmux {
-    FOLDER_NAME=${PWD##*/} 
-    SESSION="${FOLDER_NAME}_`pwd | md5`"
-    # -A trick from here: https://unix.stackexchange.com/a/176885
-    ssh -X -Y -t $@ pklemm@blade34 tmux new-session -A -s $SESSION
+    # Get folder name and remove all dots from it
+    FOLDER_NAME=$(echo ${PWD##*/} | sed s/\\./_/g)
+    SUM=`pwd | md5sum | sed s/\\s//g | sed s/-//g`
+    # Only extract the first elements from SUM to make it shorter
+    SUM=${SUM:0:3}
+    # Get current work folder, create md5sum, remove all whitespace characters, remove all dashes
+    SESSION="${FOLDER_NAME}_${SUM}"
+    tmux new-session -A -s $SESSION
 }
-
 
 # Enable fzf - https://github.com/junegunn/fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
