@@ -10,6 +10,7 @@ I use
 - Autocompletion Plugin for Oh My ZSH: [https://github.com/zsh-users/zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [Powerlevel10k](https://github.com/romkatv/powerlevel10k) theme for ZSH with a custom configuration found in the `zshrc`
 - [NORD tmux theme](https://github.com/arcticicestudio/nord-tmux)
+- [Aerospace](https://github.com/nikitabobko/AeroSpace) window manager
 
 ## Usage
 
