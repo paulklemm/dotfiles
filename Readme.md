@@ -25,6 +25,7 @@ ln -s ~/.dotfiles/bash_profile ~/.bash_profile
 ln -s ~/.dotfiles/zshrc ~/.zshrc
 ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/p10k.zsh ~/.p10k.zsh
+ln -s ~/.dotfiles/aerospace.toml ~/.aerospace.toml
 
 # Clone tmux theme
 cd ~/.dotfiles && git clone git@github.com:arcticicestudio/nord-tmux.git
