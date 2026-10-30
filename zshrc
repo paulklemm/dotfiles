@@ -150,3 +150,14 @@ setopt HIST_IGNORE_ALL_DUPS
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/paul/.cache/lm-studio/bin"
+
+export PATH="$PATH:/Users/paul/.config/emacs/bin"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
+
+# GWDG Academic Cloud key for opencode (see ai-codriver)
+[ -r ~/.config/gwdg/api_key ] && \
+  export ACADEMICCLOUD_API_KEY=$(cat ~/.config/gwdg/api_key)
