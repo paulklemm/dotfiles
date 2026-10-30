@@ -9,6 +9,14 @@
 # Available commands: https://nikitabobko.github.io/AeroSpace/commands
 after-login-command = []
 
+# Drag it along on every workspace switch
+# nodeterm HUD floating on all spaces
+# exec-on-workspace-change = ['/bin/bash', '-c', '''
+# aerospace list-windows --all --json \
+#   | jq -r '.[] | select(."window-title" | test("nodeterm HUD")) | ."window-id"' \
+#   | xargs -r -n1 -I{} aerospace move-node-to-workspace --window-id {} "$AEROSPACE_FOCUSED_WORKSPACE"
+# ''']
+
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
@@ -53,6 +61,7 @@ key-mapping.preset = 'qwerty'
 inner.horizontal = 0
 inner.vertical =   0
 outer.left =       0
+# outer.bottom =     31
 outer.bottom =     0
 outer.top =        0
 outer.right =      0
@@ -67,7 +76,8 @@ PATH = '/opt/homebrew/bin:/opt/homebrew/sbin:${PATH}'
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 # 'main' binding mode must be always presented
 [mode.main.binding]
-
+alt-shift-ctrl-cmd-left = 'move-node-to-monitor --focus-follows-window --wrap-around left'
+alt-shift-ctrl-cmd-right = 'move-node-to-monitor --focus-follows-window --wrap-around right'
 # All possible keys:
 # - Letters.        a, b, c, ..., z
 # - Numbers.        0, 1, 2, ..., 9
@@ -120,30 +130,32 @@ alt-4 = 'workspace 4'
 # Messes with '{' and '}' on Super
 # alt-8 = 'workspace 8'
 # alt-9 = 'workspace 9'
-alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
-alt-b = 'workspace B'
-alt-c = 'workspace C'
-alt-d = 'workspace D'
+# alt-a = 'workspace A' # In your config, you can drop workspace bindings that you don't need
+# alt-b = 'workspace B'
+# alt-c = 'workspace C'
+# Messes with 'done' Notes+ command
+# alt-d = 'workspace D'
 # alt-e = 'workspace E'
-alt-f = 'workspace F'
-alt-g = 'workspace G'
-alt-i = 'workspace I'
-alt-m = 'workspace M'
+# alt-f = 'workspace F'
+# alt-g = 'workspace G'
+# alt-i = 'workspace I'
+# alt-m = 'workspace M'
 # alt-n = 'workspace N'
-alt-o = 'workspace O'
-alt-p = 'workspace P'
-alt-q = 'workspace Q'
-alt-r = 'workspace R'
-alt-s = 'workspace S'
-alt-t = 'workspace T'
-alt-u = 'workspace U'
-alt-v = 'workspace V'
-alt-w = 'workspace W'
-alt-x = 'workspace X'
-alt-y = 'workspace Y'
-alt-z = 'workspace Z'
+# alt-o = 'workspace O'
+# alt-p = 'workspace P'
+# alt-q = 'workspace Q'
+# alt-r = 'workspace R'
+# alt-s = 'workspace S'
+# alt-t = 'workspace T'
+# alt-u = 'workspace U'
+# alt-v = 'workspace V'
+# alt-w = 'workspace W'
+# alt-x = 'workspace X'
+# alt-y = 'workspace Y'
+# alt-z = 'workspace Z'
 
-alt-shift-ctrl-cmd-left = ['move-node-to-monitor --wrap-around left', 'focus-back-and-forth']
+# alt-shift-ctrl-cmd-left = ['move-node-to-monitor --wrap-around left', 'focus-back-and-forth']
+# alt-shift-ctrl-cmd-left = ['move-node-to-monitor --wrap-around left', 'focus-back-and-forth']
 alt-shift-ctrl-cmd-up = 'fullscreen'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
@@ -159,7 +171,7 @@ alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-a = 'move-node-to-workspace A'
 alt-shift-b = 'move-node-to-workspace B'
 alt-shift-c = 'move-node-to-workspace C'
-alt-shift-d = 'move-node-to-workspace D'
+# alt-shift-d = 'move-node-to-workspace D'
 # alt-shift-e = 'move-node-to-workspace E'
 alt-shift-f = 'move-node-to-workspace F'
 alt-shift-g = 'move-node-to-workspace G'
@@ -200,3 +212,46 @@ alt-shift-h = ['join-with left', 'mode main']
 alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
+
+# Make OmniFocus4 floating
+[[on-window-detected]]
+if.app-id = 'com.omnigroup.OmniFocus4'
+run = 'layout floating'
+
+# Make Spotify floating
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'layout floating'
+
+# Make Path Finder floating
+[[on-window-detected]]
+if.app-id = 'com.cocoatech.PathFinder'
+run = 'layout floating'
+
+# # Make Mailmate floating
+# [[on-window-detected]]
+# if.app-id = 'com.freron.MailMate'
+# run = 'layout floating'
+
+# Make Claude floating
+# [[on-window-detected]]
+# if.app-id = 'com.anthropic.claudefordesktop'
+# run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'app.boringbar.stable'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'app.portal.ios.v1'
+run = 'layout floating'
+
+# Make Windows App floating
+[[on-window-detected]]
+if.app-id = 'com.microsoft.rdc.macos'
+run = 'layout floating'
+
+# # Make the HUD float so it doesn't disturb your tiling
+# [[on-window-detected]]
+# if.window-title-regex-substring = 'nodeterm HUD'
+# run = 'layout floating'
