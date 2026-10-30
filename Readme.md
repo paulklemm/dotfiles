@@ -28,6 +28,9 @@ ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/p10k.zsh ~/.p10k.zsh
 ln -s ~/.dotfiles/aerospace.toml ~/.aerospace.toml
 
+# Build the workspace-coloured menu bar tint, started by aerospace.toml
+swiftc -O ~/.dotfiles/workspace-tint.swift -o ~/.local/bin/workspace-tint
+
 # Clone tmux theme
 cd ~/.dotfiles && git clone git@github.com:arcticicestudio/nord-tmux.git
 # Clone fzf - https://github.com/junegunn/fzf#using-git

@@ -12,7 +12,11 @@ after-login-command = []
 # You can use it to add commands that run after AeroSpace startup.
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
-after-startup-command = []
+after-startup-command = ['exec-and-forget pgrep -x workspace-tint > /dev/null || ~/.local/bin/workspace-tint']
+
+# Recolour the menu bar tint (workspace-tint.swift) when focus moves
+exec-on-workspace-change = ['/bin/bash', '-c', 'pkill -USR1 -x workspace-tint']
+on-focused-monitor-changed = ['exec-and-forget pkill -USR1 -x workspace-tint']
 
 # Start AeroSpace at login
 start-at-login = true
