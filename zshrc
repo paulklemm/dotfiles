@@ -74,7 +74,6 @@ function gi() { curl https://www.gitignore.io/api/$@ ;}
 
 export EDITOR='code'
 export PATH=$PATH:/Users/paul/.rvm/gems/ruby-2.2.0/bin:/Users/paul/.rvm/gems/ruby-2.2.0@global/bin:/Users/paul/.rvm/rubies/ruby-2.2.0/bin:/usr/local/bin:/usr/local/sbin:/usr/local/mysql/bin:/usr/local/share/npm/bin:/usr/local/mysql/bin:/Applications/MATLAB_R2013b.app/bin:/usr/local/opt/ruby/bin:/usr/local/sbin:/usr/local/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/texbin:/Users/paul/.rvm/bin:/Users/paul/.cabal/bin
-export PATH=/Users/paul/anaconda3/bin:$PATH
 # export MANPATH="/usr/local/man:$MANPATH"
 # Autojump configuration
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
@@ -161,3 +160,8 @@ export PATH="$HOME/bin:$PATH"
 # GWDG Academic Cloud key for opencode (see ai-codriver)
 [ -r ~/.config/gwdg/api_key ] && \
   export ACADEMICCLOUD_API_KEY=$(cat ~/.config/gwdg/api_key)
+
+# opencode
+export PATH=/Users/paul/.opencode/bin:$PATH
+export OPENCODE_ENABLE_EXA=1  # enables built-in websearch tool
+export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
