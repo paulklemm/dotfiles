@@ -165,3 +165,6 @@ export PATH="$HOME/bin:$PATH"
 export PATH=/Users/paul/.opencode/bin:$PATH
 export OPENCODE_ENABLE_EXA=1  # enables built-in websearch tool
 export PATH="/opt/homebrew/opt/rustup/bin:$PATH"
+
+# Private, per-machine settings that stay out of this repository
+[ -r ~/.zshrc.local ] && source ~/.zshrc.local
