@@ -1,6 +1,6 @@
-// Tints each screen's menu bar in the colour of its visible AeroSpace workspace:
+// Tints each screen's menu bar in the colour of its visible rift workspace:
 // solid on the focused screen, faint on the others. Refreshes on SIGUSR1, sent by
-// the callbacks in aerospace.toml. Needs "Show menu bar background" turned off in
+// the subscriptions in ~/.config/rift/config.toml. Needs "Show menu bar background" turned off in
 // System Settings, as that background hides the tint.
 //
 // Build: swiftc -O ~/.dotfiles/workspace-tint.swift -o ~/.local/bin/workspace-tint
@@ -53,21 +53,29 @@ func rebuildBands() {
     }
 }
 
+// The display UUID as rift reports it, e.g. "A891EEEC-ACC9-44BD-9BD6-17526B8CF185".
+func displayUUID(_ screen: NSScreen) -> String? {
+    guard let number = screen.deviceDescription[NSDeviceDescriptionKey("NSScreenNumber")] as? NSNumber,
+          let uuid = CGDisplayCreateUUIDFromDisplayID(number.uint32Value)?.takeRetainedValue() else { return nil }
+    return CFUUIDCreateString(nil, uuid) as String
+}
+
 func refresh() {
-    let aerospace = Process()
+    let rift = Process()
     let output = Pipe()
-    aerospace.executableURL = URL(fileURLWithPath: "/opt/homebrew/bin/aerospace")
-    aerospace.arguments = ["list-workspaces", "--monitor", "all", "--visible", "--format",
-                           "%{workspace}|%{workspace-is-focused}|%{monitor-appkit-nsscreen-screens-id}"]
-    aerospace.standardOutput = output
-    guard (try? aerospace.run()) != nil else { return }
-    let text = String(decoding: output.fileHandleForReading.readDataToEndOfFile(), as: UTF8.self)
-    for line in text.split(separator: "\n") {
-        let fields = line.split(separator: "|")
-        guard fields.count == 3, let screen = Int(fields[2]), bands.indices.contains(screen - 1) else { continue }
-        let color = colors[String(fields[0])] ?? otherWorkspaces
-        let alpha = fields[1] == "true" ? focusedAlpha : unfocusedAlpha
-        bands[screen - 1].backgroundColor = color.withAlphaComponent(alpha)
+    rift.executableURL = URL(fileURLWithPath: "/opt/homebrew/bin/rift-cli")
+    rift.arguments = ["query", "workspaces"]
+    rift.standardOutput = output
+    guard (try? rift.run()) != nil else { return }
+    let data = output.fileHandleForReading.readDataToEndOfFile()
+    guard let workspaces = (try? JSONSerialization.jsonObject(with: data)) as? [[String: Any]] else { return }
+    let screens = NSScreen.screens.map(displayUUID)
+    for workspace in workspaces where workspace["is_active"] as? Bool == true {
+        guard let name = workspace["name"] as? String, let uuid = workspace["display_uuid"] as? String,
+              let screen = screens.firstIndex(of: uuid), bands.indices.contains(screen) else { continue }
+        let color = colors[name] ?? otherWorkspaces
+        let alpha = workspace["is_focused"] as? Bool == true ? focusedAlpha : unfocusedAlpha
+        bands[screen].backgroundColor = color.withAlphaComponent(alpha)
     }
 }
 

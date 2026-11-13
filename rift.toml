@@ -1,0 +1,166 @@
+# rift config, translated from ~/.aerospace.toml
+# Reference: /opt/homebrew/opt/rift/share/rift/rift.default.toml
+#
+# Keys: rift reads letters and punctuation names through the active keyboard
+# layout (German here); AeroSpace's `qwerty` preset used US key positions.
+# Bindings below are written so the same physical keys do the same things.
+
+[settings]
+animate = false
+
+# Manage every space from the start, as AeroSpace did (rift's default is off).
+default_disable = false
+
+# AeroSpace moved neither focus nor pointer with the mouse.
+focus_follows_mouse = false
+mouse_follows_focus = false
+mouse_hides_on_focus = false
+
+auto_focus_blacklist = []
+
+# Menu bar tint (~/.dotfiles/workspace-tint.swift): start it, and repaint on
+# workspace and focus changes (AeroSpace: after-startup-command,
+# exec-on-workspace-change, on-focused-monitor-changed).
+# The tint starts with the repaint signal ignored, so a repaint sent while it
+# is still starting up can't kill it (it listens for the signal regardless).
+run_on_start = [
+  "/bin/sh -c \"trap '' USR1; pgrep -x workspace-tint >/dev/null || exec $HOME/.local/bin/workspace-tint\"",
+  '/opt/homebrew/bin/rift-cli subscribe cli --event workspace_changed --command /bin/sh --args -c --args "pkill -USR1 -x workspace-tint"',
+  '/opt/homebrew/bin/rift-cli subscribe cli --event focused_window_changed --command /bin/sh --args -c --args "pkill -USR1 -x workspace-tint"',
+]
+
+hot_reload = true
+
+[settings.layout]
+# i3-like tiles and stacks, the closest match to AeroSpace's tiles/accordion
+mode = "traditional"
+window_insertion_point = "next_to_selection"
+
+[settings.layout.traditional]
+equalize_nodes = true
+
+[settings.layout.stack]
+# AeroSpace accordion-padding
+stack_offset = 30.0
+default_orientation = "perpendicular"
+
+[settings.layout.gaps.outer]
+top = 0
+left = 0
+bottom = 0
+right = 0
+
+[settings.layout.gaps.inner]
+horizontal = 0
+vertical = 0
+
+# Full-screen overview of workspaces and windows (Hyper+Down). Changing
+# `enabled` needs a rift restart: rift service restart
+[settings.ui.mission_control]
+enabled = true
+activate_on_hotkey_release = false
+show_empty_workspaces = true
+
+# Small picture of each workspace's window arrangement in the menu bar,
+# plus the binding mode's name while service mode is on.
+[settings.ui.menu_bar]
+enabled = true
+show_empty = false
+show_binding_mode = true
+mode = "all"
+display_style = "layout"
+
+# Tab bar with window titles beside stacked windows
+[settings.ui.stack_line]
+enabled = true
+hover = "hover"
+horiz_placement = "top"
+vert_placement = "left"
+thickness = 28.0
+
+[virtual_workspaces]
+# One pool of workspaces shared by all displays, as in AeroSpace.
+mode = "global"
+enabled = true
+default_workspace_count = 4
+auto_assign_windows = true
+preserve_focus_per_workspace = true
+workspace_auto_back_and_forth = false
+prevent_wrapping = false
+
+# Indices used in [keys] are zero-based: "1" is 0, "4" is 3.
+workspace_names = ["1", "2", "3", "4"]
+
+# Every screen gets a pinned workspace; without pins rift can put all
+# workspaces on one screen at startup. Names come from `rift-cli query displays`.
+workspace_rules = [
+  { workspace = "1", display = "DELL U2719DC" },
+  { workspace = "2", display = "DELL U2719DC" },
+  { workspace = "3", display = "DELL U2515H" },
+  { workspace = "4", display = "builtin" },
+]
+
+# AeroSpace on-window-detected: layout floating
+app_rules = [
+  { app_id = "com.omnigroup.OmniFocus4", floating = true },
+  { app_id = "com.spotify.client", floating = true },
+  { app_id = "com.cocoatech.PathFinder", floating = true },
+  { app_id = "app.boringbar.stable", floating = true },
+  { app_id = "app.portal.ios.v1", floating = true },
+  { app_id = "com.microsoft.rdc.macos", floating = true },
+]
+
+[keys]
+# Meta = Cmd
+"Alt + Shift + Ctrl + Meta + Left" = { move_window_to_display = { selector = "left" } }
+"Alt + Shift + Ctrl + Meta + Right" = { move_window_to_display = { selector = "right" } }
+"Alt + Shift + Ctrl + Meta + Up" = "toggle_fullscreen"
+
+# "Slash" is the key right of the period (labelled - on German keys)
+"Alt + Slash" = "toggle_orientation"
+"Alt + Comma" = "toggle_stack"
+
+"Alt + Shift + H" = { move_node = "left" }
+"Alt + Shift + J" = { move_node = "down" }
+"Alt + Shift + K" = { move_node = "up" }
+"Alt + Shift + L" = { move_node = "right" }
+
+# The two keys right of 0: ß and ´ (AeroSpace minus and equal)
+"Alt + Shift + ß" = { resize_window_shrink = "smart" }
+"Alt + Shift + Equal" = { resize_window_grow = "smart" }
+
+"Alt + 1" = { switch_to_workspace = 0 }
+"Alt + 2" = { switch_to_workspace = 1 }
+"Alt + 3" = { switch_to_workspace = 2 }
+"Alt + 4" = { switch_to_workspace = 3 }
+
+"Alt + Shift + 1" = { move_window_to_workspace = 0 }
+"Alt + Shift + 2" = { move_window_to_workspace = 1 }
+"Alt + Shift + 3" = { move_window_to_workspace = 2 }
+"Alt + Shift + 4" = { move_window_to_workspace = 3 }
+
+# Layout of the current workspace, to try them out
+"Alt + Ctrl + 1" = { set_workspace_layout = { mode = "traditional" } }
+"Alt + Ctrl + 2" = { set_workspace_layout = { mode = "bsp" } }
+"Alt + Ctrl + 3" = { set_workspace_layout = { mode = "master_stack" } }
+"Alt + Ctrl + 4" = { set_workspace_layout = { mode = "scrolling" } }
+"Alt + Ctrl + 5" = { set_workspace_layout = { mode = "stack" } }
+
+"Alt + Shift + Ctrl + Meta + Down" = "show_mission_control_all"
+
+"Alt + Tab" = "switch_to_last_workspace"
+"Alt + Shift + Tab" = { move_workspace_to_display = { selector = "right", wrap_around = true } }
+
+# "Semicolon" is the ö key
+"Alt + Shift + Semicolon" = { binding_mode = "service" }
+
+# Keep all [keys] entries above this table.
+[binding_modes.service]
+"Escape" = ["reload_config", { binding_mode = "default" }]
+"F" = ["toggle_window_floating", { binding_mode = "default" }]
+# Equal window sizes (closest to AeroSpace's flatten-workspace-tree)
+"R" = ["balance", { binding_mode = "default" }]
+"Alt + Shift + H" = [{ join_window = "left" }, { binding_mode = "default" }]
+"Alt + Shift + J" = [{ join_window = "down" }, { binding_mode = "default" }]
+"Alt + Shift + K" = [{ join_window = "up" }, { binding_mode = "default" }]
+"Alt + Shift + L" = [{ join_window = "right" }, { binding_mode = "default" }]

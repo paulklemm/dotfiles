@@ -26,8 +26,8 @@ after-startup-command = ['exec-and-forget pgrep -x workspace-tint > /dev/null ||
 exec-on-workspace-change = ['/bin/bash', '-c', 'pkill -USR1 -x workspace-tint']
 on-focused-monitor-changed = ['exec-and-forget pkill -USR1 -x workspace-tint']
 
-# Start AeroSpace at login
-start-at-login = true
+# Start AeroSpace at login (off: rift replaces it, see ~/.config/rift/config.toml)
+start-at-login = false
 
 # Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
 enable-normalization-flatten-containers = true

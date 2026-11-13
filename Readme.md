@@ -10,7 +10,7 @@ I use
 - Autocompletion Plugin for Oh My ZSH: [https://github.com/zsh-users/zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 - [Powerlevel10k](https://github.com/romkatv/powerlevel10k) theme for ZSH with a custom configuration found in the `zshrc`
 - [NORD tmux theme](https://github.com/arcticicestudio/nord-tmux)
-- [Aerospace](https://github.com/nikitabobko/AeroSpace) window manager
+- [rift](https://github.com/acsandmann/rift) window manager (replaces [Aerospace](https://github.com/nikitabobko/AeroSpace); `aerospace.toml` is kept with start at login turned off)
 
 ## Usage
 
@@ -27,8 +27,13 @@ ln -s ~/.dotfiles/zshrc ~/.zshrc
 ln -s ~/.dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/.dotfiles/p10k.zsh ~/.p10k.zsh
 ln -s ~/.dotfiles/aerospace.toml ~/.aerospace.toml
+mkdir -p ~/.config/rift && ln -s ~/.dotfiles/rift.toml ~/.config/rift/config.toml
 
-# Build the workspace-coloured menu bar tint, started by aerospace.toml
+# Install rift and start it at login (needs Accessibility permission)
+brew install acsandmann/tap/rift
+rift service install && rift service start
+
+# Build the workspace-coloured menu bar tint, started by rift.toml
 swiftc -O ~/.dotfiles/workspace-tint.swift -o ~/.local/bin/workspace-tint
 
 # Clone tmux theme
