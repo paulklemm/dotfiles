@@ -114,7 +114,10 @@ app_rules = [
 # Meta = Cmd
 "Alt + Shift + Ctrl + Meta + Left" = { move_window_to_display = { selector = "left" } }
 "Alt + Shift + Ctrl + Meta + Right" = { move_window_to_display = { selector = "right" } }
-"Alt + Shift + Ctrl + Meta + Up" = "toggle_fullscreen"
+# Hyper (Caps Lock via Karabiner) + Up: switch the focused workspace between
+# the stack layout and tiles (Alt + Ctrl + 5 / Alt + Ctrl + 1). Rift has no
+# toggle command, so ask it for the current layout and set the other one.
+"Alt + Shift + Ctrl + Meta + Up" = { exec = ["/bin/sh", "-c", '''/opt/homebrew/bin/rift-cli query workspaces | /usr/bin/jq -r '.[] | select(.is_focused) | "--workspace-id", .index, (if .layout_mode == "stack" then "traditional" else "stack" end)' | /usr/bin/xargs /opt/homebrew/bin/rift-cli execute workspace set-layout'''] }
 
 # "Slash" is the key right of the period (labelled - on German keys)
 "Alt + Slash" = "toggle_orientation"
@@ -145,6 +148,13 @@ app_rules = [
 "Alt + Ctrl + 3" = { set_workspace_layout = { mode = "master_stack" } }
 "Alt + Ctrl + 4" = { set_workspace_layout = { mode = "scrolling" } }
 "Alt + Ctrl + 5" = { set_workspace_layout = { mode = "stack" } }
+
+# Previous / next window. In the stack layout: the tab above / below (stops at
+# the first and last tab, or moves on to a display above or below), because
+# prev_window and next_window skip a stack's hidden tabs. In other layouts:
+# prev_window / next_window, which wrap around.
+"Alt + Shift + Ctrl + Meta + PageUp" = { exec = ["/bin/sh", "-c", '''/opt/homebrew/bin/rift-cli query workspaces | /usr/bin/jq -r '.[] | select(.is_focused) | if .layout_mode == "stack" then "focus", "up" else "prev" end' | /usr/bin/xargs /opt/homebrew/bin/rift-cli execute window'''] }
+"Alt + Shift + Ctrl + Meta + PageDown" = { exec = ["/bin/sh", "-c", '''/opt/homebrew/bin/rift-cli query workspaces | /usr/bin/jq -r '.[] | select(.is_focused) | if .layout_mode == "stack" then "focus", "down" else "next" end' | /usr/bin/xargs /opt/homebrew/bin/rift-cli execute window'''] }
 
 "Alt + Shift + Ctrl + Meta + Down" = "show_mission_control_all"
 
